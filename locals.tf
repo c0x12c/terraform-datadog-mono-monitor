@@ -27,7 +27,7 @@ locals {
     title_tags     = "[CrashLoopBackOff Pod]"
     title          = "Pod {{pod_name.name}} is CrashloopBackOff on namespace {{kube_namespace.name}}"
 
-    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:crashloopbackoff} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
+    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:crashloopbackoff, kube_namespace:${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
       timeframe = "last_5m"
     }
@@ -42,7 +42,7 @@ locals {
     title_tags     = "[ImagePullBackOff Pod]"
     title          = "Pod {{pod_name.name}} is ImagePullBackOff on namespace {{kube_namespace.name}}"
 
-    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:imagepullbackoff} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
+    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:imagepullbackoff, ${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
       timeframe = "last_5m"
     }
@@ -57,7 +57,7 @@ locals {
     title_tags     = "[Failed Pod]"
     title          = "Pod {{pod_name.name}} is Failed on namespace {{kube_namespace.name}}"
 
-    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:failed} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
+    query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:failed, ${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
       timeframe = "last_5m"
     }

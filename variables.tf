@@ -9,6 +9,11 @@ variable "tag_slack_channel" {
   default     = true
 }
 
+variable "namespace" {
+  description = "Whether to specific the namespace of service that is belong to"
+  type        = string
+}
+
 variable "notification_slack_channel_prefix" {
   description = "The prefix for Slack channels that will receive notifcations and alerts"
   type        = string
