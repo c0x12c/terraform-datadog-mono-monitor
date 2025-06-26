@@ -25,7 +25,7 @@ locals {
   crash_loop_back_off = {
     priority_level = 2
     title_tags     = "[CrashLoopBackOff Pod]"
-    title          = "Pod {{pod_name.name}} is CrashloopBackOff on namespace {{kube_namespace.name}}"
+    title          = "Pod {{pod_name.name}} is CrashloopBackOff on namespace ${var.namespace}"
 
     query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:crashloopbackoff, kube_namespace:${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
@@ -40,7 +40,7 @@ locals {
   image_pull_back_off = {
     priority_level = 2
     title_tags     = "[ImagePullBackOff Pod]"
-    title          = "Pod {{pod_name.name}} is ImagePullBackOff on namespace {{kube_namespace.name}}"
+    title          = "Pod {{pod_name.name}} is ImagePullBackOff on namespace ${var.namespace}"
 
     query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:imagepullbackoff, ${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
@@ -55,7 +55,7 @@ locals {
   failed = {
     priority_level = 2
     title_tags     = "[Failed Pod]"
-    title          = "Pod {{pod_name.name}} is Failed on namespace {{kube_namespace.name}}"
+    title          = "Pod {{pod_name.name}} is Failed on namespace ${var.namespace}"
 
     query_template = "max($${timeframe}):default_zero(max:kubernetes_state.container.status_report.count.waiting{kube_cluster_name:${var.cluster_name}, reason:failed, ${var.namespace}} by {kube_cluster_name, kube_namespace, pod_name}) >= $${threshold_critical}"
     query_args = {
