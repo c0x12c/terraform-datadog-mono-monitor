@@ -9,9 +9,10 @@ variable "tag_slack_channel" {
   default     = true
 }
 
-variable "namespace" {
+variable "namespace_regex" {
   description = "Whether to specific the namespace of service that is belong to"
   type        = string
+  default     = "*"
 }
 
 variable "notification_slack_channel_prefix" {
