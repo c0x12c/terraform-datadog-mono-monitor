@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0]() (2025-06-26)
+
+### Features
+
+* Add Kube Namespace filter for monitoring and alert for that namespace only. That will support to separate the notifications each service in the same cluster to each channel we want.
+* Bump version to 1.0.0
+
 ## [0.2.0]() (2025-06-20)
 
 ### Changes
