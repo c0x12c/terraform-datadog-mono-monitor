@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0]() (2025-06-26)
+
+### Features
+
+* Update c0x12c/monitors/datadog requirement from ~> 0.1.38 to ~> 1.0.0
+* Add overwrite default message in override_default_monitors
+
 ## [1.0.0]() (2025-06-26)
 
 ### Features

@@ -11,7 +11,8 @@ Terraform module that creates standalone Datadog monitors, supporting the follow
 
 ```hcl
 module "mono_monitor" {
-  source  = "github.com/spartan-stratos/terraform-modules//datadog/mono-monitor?ref=v0.1.36"
+  source  = "c0x12c/mono-monitor/datadog"
+  version = "~> 1.0.0"
 
   notification_slack_channel_prefix = "proj-service-x-"
   environment                       = "dev"

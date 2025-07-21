@@ -11,9 +11,10 @@ module "mono_monitor" {
 
   override_default_monitors = {
     http_check = {
-      priority_level = 2
-      title_tags     = "[HTTP Check]"
-      title          = "URLs are not healthy"
+      priority_level           = 2
+      title_tags               = "[HTTP Check]"
+      title                    = "URLs are not healthy"
+      override_default_message = "@oncall-team @slack-channel-prod"
 
       type           = "service check"
       query_template = "\"http.can_connect\".over(\"env:dev\").by(\"url\").last(2).count_by_status()"
